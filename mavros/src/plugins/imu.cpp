@@ -526,21 +526,12 @@ private:
     auto accel_flu = ftf::transform_frame_aircraft_baselink<Eigen::Vector3d>(accel_frd);
 
     if (uas->is_ardupilotmega()) {
-    RCLCPP_WARN_THROTTLE(
-        get_logger(),
-        *get_clock(), 60000, "Ardupilot firmeware detected.");
       accel_frd *= MILLIG_TO_MS2;
       accel_flu *= MILLIG_TO_MS2;
     } else if (uas->is_px4()) {
-    RCLCPP_WARN_THROTTLE(
-        get_logger(),
-        *get_clock(), 60000, "PX4 firmeware detected.");
       accel_frd *= MILLIMS2_TO_MS2;
       accel_flu *= MILLIMS2_TO_MS2;
     } else {
-        RCLCPP_WARN_THROTTLE(
-        get_logger(),
-        *get_clock(), 60000, "Generic firmeware detected.");
       accel_frd *= MILLIMS2_TO_MS2;
       accel_flu *= MILLIMS2_TO_MS2;
     }
